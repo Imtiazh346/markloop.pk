@@ -1,0 +1,103 @@
+{% comment %} {{ }} → Output (print something) 
+Use double curly braces when you want to show data on the page.
+<p>{{ product.title }}</p>
+<p>{{ shop.name }}</p>
+<p>{{ cart.item_count }}</p>
+{% endcomment %}
+
+{% comment %} {% %} → Logic / Tags (do something) 
+Use curly braces with percent when you want to run logic, assign values, loops, or conditions.
+ {% assign my_var = 10 %}
+{% if product.available %}
+  <p>In stock</p>
+{% endif %}
+
+{% for product in collection.products %}
+  <p>{{ product.title }}</p>
+{% endfor %}
+ {% endcomment %}
+
+{% comment %} To create a new variable we use assign  {% endcomment %}
+{% assign my_name = 'Imtiaz Hussain' %}    
+{{ my_name }}
+
+{% comment %} numbers {% endcomment %}
+{% assign my_number = 750 %}
+{{ my_number }}
+
+{% comment %} floating point values {% endcomment %}
+{% assign my_float = 750.500 %}
+{{ my_float }}
+
+{% comment %} boolean {% endcomment %}
+{{ assign my_bool = false }}
+{{ my_bool }}
+
+{% comment %} null {% endcomment %}
+{{ assign my_null = null }}
+{{ my_null }}
+
+{% comment %} To remove top/bottom space from variable use dash "-" sign {% endcomment %}
+{{- assign father = 'Niaz Ahmad' -}}    
+{{- father -}}
+
+{% comment %}This is the comment in liquid we can use  "ctrl + /" keyboard keys to comment the line {% endcomment %}
+
+<!-- We can use html comment as well but this will be visible in the browser but liquid comment will not shown in the browser -->
+
+{% comment %} If Else Conditions {% endcomment %}
+
+{% if page_description = !null  %} 
+{{ page_description }}
+{% endif %} 
+
+{% assign my_number = 15 %}
+
+{% if my_number < 10 %}
+  <p>The number is less than 10</p>
+{% elsif my_number == 10 %}
+  <p>The number is exactly 10</p>
+{% elsif my_number > 10 and my_number < 20 %}
+  <p>The number is between 11 and 19</p>
+{% elsif my_number >= 20 %}
+  <p>The number is 20 or more</p>
+{% else %}
+  <p>Something went wrong</p>
+{% endif %}
+
+{% comment %} example two  {% endcomment %}
+ {% if product.available == false %}
+  <p>Out of stock</p>
+{% elsif product.price < 2000 %}
+  <p>Budget product: {{ product.title }}</p>
+{% elsif product.price >= 2000 and product.price < 5000 %}
+  <p>Mid-range product: {{ product.title }}</p>
+{% else %}
+  <p>Premium product: {{ product.title }}</p>
+{% endif %}
+
+
+{% comment %} Arrays {% endcomment %}
+{% product.tags %} {% comment %} this will print all tags of the product page {% endcomment %}
+{% product.tags.size %} {% comment %}  This will show array size {% endcomment %}
+{% product.tags[0] %} {% comment %} will show first tag of the product {% endcomment %}
+
+{% comment %} For Loops {% endcomment %}
+
+{% for tag in product.tags %}
+{{ tag }}
+{% endfor %}    
+
+
+{%- comment -%} capture - anything placed in this command can be used in future like function{%- endcomment -%}
+
+{%  capture my_number %} 
+<div>
+<p> Hello this product title for future use {{ product.title }}</p>    
+</div>
+{% endcapture %} 
+
+<!-- Now can reuse it in the new section -->
+<section>
+  {{ my_number }}
+</section>
